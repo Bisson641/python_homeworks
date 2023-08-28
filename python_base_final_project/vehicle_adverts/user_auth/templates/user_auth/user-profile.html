@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+<h1>{{ user.username }}: Wellcome to your profile page</h1>
+    {% if user.is_authenticated %}
+
+        <hr>
+        <br>
+        <p>{{ user.username }} Your adverts below:</p>
+        <hr>
+        <br>
+            {% for advert in advert_list %}
+            <ul> <a href="{% url 'adverts:advert' pk=advert.pk %}"> <code>{{ advert.status }}</code>  {{ advert.name }}  {{ advert.author }} <img src="{{ advert.photo }}">  </a> </ul>
+
+            {% endfor %}
+    {% else %}
+        <h2>Sing in please</h2>
+    {% endif %}
+
+{% endblock %}

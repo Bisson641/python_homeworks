@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+<h1>{{ user.username }}: Wellcome to your profile page</h1>
+    {% if user.is_authenticated %}
+
+        <hr>
+        <br>
+        <p>{{ user.username }} Your adverts below:</p>
+        <hr>
+        <br>
+            {% for advert in advert_list %}
+            <ul> <a href="{% url 'adverts:advert' pk=advert.pk %}">
+                {{ advert.name }}  {{ advert.author }}
+                <img src="{{ advert.photo }}">  </a>
+                {% if advert.status %}
+                    <br>
+                    <a class="btn btn-danger" href="{% url 'adverts:confirm-delete-advert' pk=advert.pk %}">Deactivate</a>
+                {% else %}
+                    <a class="btn btn-success" href="{% url 'adverts:confirm-activate-advert' pk=advert.pk %}">Activate</a>
+                {% endif %}
+            </ul>
+
+
+            {% endfor %}
+    {% else %}
+        <h2>Sing in please</h2>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Activate advert # {{ advert.name }}
+{% endblock %}
+
+{% block body %}
+    <h1> Activate <code>{{ advert.name }}</code></h1>
+    <div class="alert alert-success">
+    Your advert #{{ advert.pk }}
+    with name: {{ advert.name }}
+    will be activated
+    </div>
+    <form method="post">
+    {% csrf_token %}
+        <input class="btn btn-warning" type="submit" value="Activate">
+    </form>
+
+    <div class="my-3">
+        <a class="btn btm-sm btn-info" href="{% url 'adverts:user-adverts' %}">Back to user adverts</a>
+    </div>
+{% endblock %}
+

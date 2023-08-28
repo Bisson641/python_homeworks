@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Advert : {{ advert.pk }}
+{% endblock %}
+
+{% block body %}
+    <hr>
+
+    <ul>
+
+        <li>
+
+            <img src="{{ advert.photo }}">
+            <p>Manufacturer: {{ advert.vehicle }}</p>
+            <p>Model: {{ advert.model}}</p>
+            <p>Price: {{ advert.price }}</p>
+            <p>Year: {{ advert.model_year }}</p>
+            <p>Condition: {{ advert.condition }}</p>
+            <p>Transmission: {{ advert.transmission }}</p>
+            <p>Engine_type: {{ advert.engine_type }}</p>
+            <p>Engine_volume: {{ advert.engine_volume}}</p>
+            <p>Updated at: {{ advert.updated_at }}</p>
+            <p>Created at: {{ advert.created_at }}</p>
+            <p>Author: {{ advert.author }}</p>
+        </li>
+
+    </ul>
+<hr>
+    <div>
+    {% if advert.author == user  %}
+        <br>
+        <a class="btn btn-warning" href="{% url 'adverts:update-advert' pk=advert.pk %}">Update</a>
+        {% if advert.status %}
+                    <br>
+                    <a class="btn btn-danger" href="{% url 'adverts:confirm-delete-advert' pk=advert.pk %}">Deactivate</a>
+                {% else %}
+
+                    <a class="btn btn-success" href="{% url 'adverts:confirm-activate-advert' pk=advert.pk %}">Activate</a>
+                {% endif %}
+
+    {% endif %}
+
+        <ul>
+
+                <br>
+                <a href="{% url 'adverts' %}">Back to adverts</a>
+
+        </ul>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delete advert # {{ advert.name }}
+{% endblock %}
+
+{% block body %}
+    <h1> Deactivate <code>{{ advert.name }}</code></h1>
+    <div class="alert alert-danger">
+    Are you sure you want to deactivate advert #{{ advert.pk }}
+    with name: {{ advert.name }}
+    </div>
+    <form method="post">
+    {% csrf_token %}
+        <input class="btn btn-warning" type="submit" value="Deactivate">
+    </form>
+
+    <div class="my-3">
+        <a class="btn btm-sm btn-info" href="{% url 'adverts:user-adverts' %}">Back to user adverts</a>
+    </div>
+{% endblock %}
+

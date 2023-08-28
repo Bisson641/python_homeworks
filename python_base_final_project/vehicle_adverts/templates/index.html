@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+{% block body %}
+    <h1>Adverts</h1>
+    <hr>
+    {%  load static %}
+    <ul>
+    {% for advert in advert_list %}
+        <ul> <a href="{% url 'adverts:advert' pk=advert.pk %}"> {{ advert.name }} {{ advert.price }} {{ advert.author }} <img src="{{ advert.photo }}"> </a> </ul>
+
+        {% endfor %}
+
+
+    </ul>
+{% endblock %}
+

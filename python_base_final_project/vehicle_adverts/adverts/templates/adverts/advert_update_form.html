@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Update advert
+{% endblock %}
+
+{% block body %}
+<h2>Update advert  <code>{{ advert.pk }}</code></h2>
+    <form method="post" id="advertForm"
+          data-models-url="{% url "adverts:load_models" %}"
+          data-years-url="{% url "adverts:load_years" %}"
+          novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+        <input type="submit" value="Update">
+    </form>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <script>
+            $("#id_vehicle").change(function (){
+                var url = $("#advertForm").attr("data-models-url");
+                var vehicleid = $(this).val();
+
+                $.ajax({
+                    url: url,
+                    data: {
+                        'vehicle': vehicleid
+                    },
+                    success: function (data) {
+                        $("#id_model").html(data);
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            $("#id_model").change(function (){
+                var year_url = $("#advertForm").attr("data-years-url");
+                var modelid = $(this).val();
+
+                $.ajax({
+                    url: year_url,
+                    data: {
+                        'model': modelid
+                    },
+                    success: function (data) {
+                        $("#id_model_year").html(data);
+                    }
+                });
+            });
+        </script>
+
+    <div class="mt-3">
+        <a class="btn btm-sm btn-info" href="{% url 'adverts:advert' pk=advert.pk %}">Back to advert</a>
+    </div>
+{% endblock %}

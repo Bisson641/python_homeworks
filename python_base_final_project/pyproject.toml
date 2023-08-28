@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "python_base_final_project"
+version = "0.1.0"
+description = "cars sale site"
+authors = ["Bisson641 <bisson641@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^4.2.3"
+Pillow = "^10.0.0"
+django-smart-selects = "^1.6.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
